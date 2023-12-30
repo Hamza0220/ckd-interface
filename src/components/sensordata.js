@@ -21,6 +21,7 @@ export default function SensorData() {
       const data = snapshot.val();
       if (data) {
         setSensorData(data);
+        // setSensorData(data);
       }
     });
   }, []);
