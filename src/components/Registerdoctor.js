@@ -57,6 +57,7 @@ const RegisterDoctor = () => {
           email: values.email,
           specialty: values.specialty,
           is_emergency: values.is_emergency,
+          disable: false,
         });
 
         toast.success("Doctor registered successfully.");

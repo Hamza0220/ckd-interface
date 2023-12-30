@@ -61,7 +61,12 @@ const Admin = () => {
 
         <ul>
           <li>
-            <button id="disable-doctor">Disable Doctor</button>
+            <button
+              id="disable-doctor"
+              onClick={() => navigate("/doctor-disable")}
+            >
+              Disable Doctor
+            </button>
           </li>
           <li>
             {/* <button id="update-doctor">Update Doctor Profile</button> */}
@@ -97,17 +102,20 @@ const Admin = () => {
         </div>
 
         <Modal
-        
           isOpen={isLogoutModalOpen}
           onRequestClose={closeLogoutModal}
           contentLabel="Logout Confirmation"
         >
-          <div className='confirmation-modal'>
-          <h2>Are you sure you want to log out?</h2>
-          <div className='confirmation-buttons'>
-            <button id="yes" onClick={handleLogout}>Yes</button>
-            <button id="no" onClick={closeLogoutModal}>No</button>
-          </div>
+          <div className="confirmation-modal">
+            <h2>Are you sure you want to log out?</h2>
+            <div className="confirmation-buttons">
+              <button id="yes" onClick={handleLogout}>
+                Yes
+              </button>
+              <button id="no" onClick={closeLogoutModal}>
+                No
+              </button>
+            </div>
           </div>
         </Modal>
       </div>

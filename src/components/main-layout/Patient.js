@@ -79,6 +79,7 @@ export default function Patient() {
       }
     } catch (error) {
       toast.error("Email or Password is invalid");
+      setIsLoading(false);
       console.error(error);
       setShowWrongPasswordAlert(true);
     }

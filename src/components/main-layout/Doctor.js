@@ -99,6 +99,16 @@ export default function Doctor() {
       const querySnapshot = await getDocs(q);
       console.log("querry", querySnapshot);
       if (querySnapshot.size === 1) {
+        const doctorDoc = querySnapshot.docs[0];
+        const doctorData = doctorDoc.data();
+        console.log("doctorData=======>", doctorData);
+        // Check if the doctor is disabled
+        if (doctorData && doctorData.disable) {
+          setIsLoading(false);
+          return toast.warn(
+            "You can't be logged in. Your account is disabled."
+          );
+        }
         console.log("Doctor logged in successfully!");
         setIsLoading(false);
         navigate("/DoctorDashboard");
@@ -110,6 +120,7 @@ export default function Doctor() {
       }
     } catch (error) {
       toast.error("Email or Password is invalid");
+      setIsLoading(false);
       console.error(error);
       setShowWrongPasswordAlert(true);
     }

@@ -30,6 +30,7 @@ import RegisterAttendent from "./components/RegisterAttendent";
 import SensorData from "./components/sensordata";
 import PatientNotification from "./components/patientnotification";
 import Ecgdata from "./components/EcgData";
+import DisableDoctorList from "./components/DisableDoctorList";
 
 function App() {
   return (
@@ -78,8 +79,8 @@ function App() {
         <Route path="/Viewpatientprofile" element={<Viewpatientprofile />} />
         <Route path="/SensorData" element={<SensorData />} />
         <Route path="/PatientNotification" element={<PatientNotification />} />
-        <Route path="/Ecgdata" element={<Ecgdata/>} />
-     
+        <Route path="/Ecgdata" element={<Ecgdata />} />
+        <Route path="/doctor-disable" element={<DisableDoctorList />} />
       </Routes>
     </BrowserRouter>
   );

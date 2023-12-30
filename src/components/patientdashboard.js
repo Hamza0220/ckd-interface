@@ -157,19 +157,11 @@ const PatientDashboard = () => {
     navigate("/EcgData");
   };
   return (
-    <div id="patint-container" className="patientdashbaord pt-5">
-      <div className="container">
-        <div id="profile " className="profile " onClick={showProfileInfo}>
-          <div id="profileNameBox" className="profile-name-box">
-            <BiSolidUser className="fs-1" />
-            <br />
-            {patientName && <span className="mt-5">{patientName}</span>}
-          </div>
-        </div>
-        <div className="welcome">
-          Welcome <span>{patientName}</span>
+    <div id="patint-container" className="patientdashbaord ">
+      <div className="d-flex justify-content-between align-items-center">
+        <div>
           <Link to="/Patientprofile">
-            <div className="icon-container">
+            <div className="icon-container text-center pb-3">
               <img
                 src="https://cdn-icons-png.flaticon.com/128/3034/3034851.png"
                 alt="patientavatar"
@@ -179,57 +171,75 @@ const PatientDashboard = () => {
             <button className="user-profile-button">Profile</button>
           </Link>
         </div>
-        <button type="button" onClick={handlepatientnotification}>
-          Notifications
-        </button>
-        <button onClick={handleShowSensorData}>Show Sensor Data</button>
-        <button onClick={handleShowEcgData}>Show ecg Data</button>
-
-        <h2>Upload Lab Reports</h2>
-        <form>
-          <input
-            type="file"
-            onChange={(e) => setSelectedLabReport(e.target.files[0])}
-          />
-          {selectedLabReport && (
-            <div className="selected-file-box">
-              Selected File: {selectedLabReport.name}
+        <div>
+          <div id="profile " className="profile " onClick={showProfileInfo}>
+            <div id="profileNameBox" className="profile-name-box">
+              <BiSolidUser className="fs-1" />
+              <br />
+              {patientName && <span className="mt-5">{patientName}</span>}
             </div>
-          )}
-          <button type="button" onClick={handleUploadLabReport}>
-            Upload
-          </button>
-        </form>
-        <h2>Upload Medical History</h2>
-        <form>
-          <input
-            type="file"
-            onChange={(e) => setSelectedMedicalReport(e.target.files[0])}
-          />
-          {selectedMedicalReport && (
-            <div className="selected-file-box">
-              Selected File : {selectedMedicalReport.name}
-            </div>
-          )}
-          <button type="button" onClick={handleUploadMedicalReport}>
-            Upload
-          </button>
-        </form>
-        <button type="button" onClick={handleShowLabReports}>
-          Show Uploaded Lab Reports
-        </button>
-        <button type="button" onClick={handleShowMedicalReports}>
-          Show Uploaded Medical History
-        </button>
-        {showProfileDropdown && (
-          <div className="profile-dropdown">
-            <button onClick={handleLogout}>Logout</button>
           </div>
-        )}
-        <button id="open-chat-button" onClick={handleOpenChat}>
-          Open Chat
-        </button>
-        <button>View Statistics</button>
+        </div>
+      </div>
+      <div className="text-center">
+        <span className="welcome">
+          Welcome <span>{patientName}</span>
+        </span>
+      </div>
+      <div className="psd">
+        <div className="container mt-3">
+          <button type="button" onClick={handlepatientnotification}>
+            Notifications
+          </button>
+          <button onClick={handleShowSensorData}>Show Sensor Data</button>
+          <button onClick={handleShowEcgData}>Show ecg Data</button>
+
+          <h2>Upload Lab Reports</h2>
+          <form>
+            <input
+              type="file"
+              onChange={(e) => setSelectedLabReport(e.target.files[0])}
+            />
+            {selectedLabReport && (
+              <div className="selected-file-box">
+                Selected File: {selectedLabReport.name}
+              </div>
+            )}
+            <button type="button" onClick={handleUploadLabReport}>
+              Upload
+            </button>
+          </form>
+          <h2>Upload Medical History</h2>
+          <form>
+            <input
+              type="file"
+              onChange={(e) => setSelectedMedicalReport(e.target.files[0])}
+            />
+            {selectedMedicalReport && (
+              <div className="selected-file-box">
+                Selected File : {selectedMedicalReport.name}
+              </div>
+            )}
+            <button type="button" onClick={handleUploadMedicalReport}>
+              Upload
+            </button>
+          </form>
+          <button type="button" onClick={handleShowLabReports}>
+            Show Uploaded Lab Reports
+          </button>
+          <button type="button" onClick={handleShowMedicalReports}>
+            Show Uploaded Medical History
+          </button>
+          {showProfileDropdown && (
+            <div className="profile-dropdown">
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          )}
+          <button id="open-chat-button" onClick={handleOpenChat}>
+            Open Chat
+          </button>
+          <button>View Statistics</button>
+        </div>
       </div>
     </div>
   );
