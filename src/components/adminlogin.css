@@ -1,0 +1,10 @@
+.wrong-password-alert {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  .success-message{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }

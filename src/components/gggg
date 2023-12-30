@@ -1,0 +1,10 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyAhelk_39kII2gWBtqYZvf0BLbpb6VLkaE",
+    authDomain: "ckd-web-interface.firebaseapp.com",
+    databaseURL: "https://ckd-web-interface-default-rtdb.firebaseio.com",
+    projectId: "ckd-web-interface",
+    storageBucket: "ckd-web-interface.appspot.com",
+    messagingSenderId: "687103645306",
+    appId: "1:687103645306:web:1fa72b87d583a3177fcdc3",
+    measurementId: "G-WJDLYX202C"
+  };

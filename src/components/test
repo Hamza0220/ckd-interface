@@ -1,0 +1,140 @@
+import React, { useEffect, useState } from "react";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { firestore } from "./firebaseconfig";
+
+export default function HardwareDisplay() {
+  const [hardwareData, setHardwareData] = useState([]);
+  const [selectedHardware, setSelectedHardware] = useState("");
+  const [patientList, setPatientList] = useState([]);
+  const [selectedPatient, setSelectedPatient] = useState("");
+  const [selectedPatientData, setSelectedPatientData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(firestore, "Hardwares"));
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          hardwareData: doc.data()["Hardware-data"],
+        }));
+        setHardwareData(data);
+      } catch (error) {
+        console.error("Error fetching hardware data: ", error);
+      }
+
+      try {
+        const patientQuerySnapshot = await getDocs(
+          collection(firestore, "patient-data")
+        );
+        const patients = patientQuerySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          patientData: doc.data(),
+        }));
+        setPatientList(patients);
+      } catch (error) {
+        console.error("Error fetching patient data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []); // useEffect sirf ek baar chalega jab component mount hoga
+
+  const handleHardwareChange = async (event) => {
+    const selectedHardwareId = event.target.value;
+    setSelectedHardware(selectedHardwareId);
+
+    // Fetch patient list for the selected hardware
+    try {
+      const patientQuery = query(
+        collection(firestore, "Patients"),
+        where("hardwareId", "==", selectedHardwareId)
+      );
+      const patientQuerySnapshot = await getDocs(patientQuery);
+      const patients = patientQuerySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        patientData: doc.data()["patient-data"],
+      }));
+      setPatientList(patients);
+
+      // Clear the selected patient when changing hardware
+      setSelectedPatient("");
+      setSelectedPatientData(null);
+    } catch (error) {
+      console.error("Error fetching patient data: ", error);
+    }
+  };
+
+  const handlePatientClick = async (patientId) => {
+    try {
+      const patientDocRef = collection(firestore, "Patients", patientId);
+      const patientDocSnapshot = await getDocs(patientDocRef);
+      const patientData = patientDocSnapshot.data();
+      setSelectedPatientData(patientData);
+      setSelectedPatient(patientId);
+    } catch (error) {
+      console.error("Error fetching selected patient data: ", error);
+    }
+  };
+
+  const handleAllocateClick = async () => {
+    // Add code to allocate the selected patient to the selected hardware
+    // This might involve updating the patient document in Firestore with the selected hardware ID
+    // and any other relevant operations
+    console.log(
+      "Allocating patient to hardware:",
+      selectedPatient,
+      selectedHardware
+    );
+  };
+
+  return (
+    <div>
+      <h2>Hardware List</h2>
+      <label htmlFor="hardwareSelect">Select Hardware:</label>
+      <select
+        id="hardwareSelect"
+        name="hardware"
+        onChange={handleHardwareChange}
+        value={selectedHardware}
+      >
+        <option value="">Select an option</option>
+        {hardwareData.map((hardware) => (
+          <option key={hardware.id} value={hardware.id}>
+            {hardware.hardwareData}
+          </option>
+        ))}
+      </select>
+
+      <div>
+        <h3>Selected Hardware: {selectedHardware}</h3>
+        <h4>Patient List:</h4>
+        <ul>
+          {patientList.map((patient) => (
+            <li key={patient.id}>
+              <p>Patient ID: {patient.id}</p>
+              <p>Patient Username: {patient.patientData.username}</p>
+              <button onClick={() => handlePatientClick(patient.id)}>
+                View Details
+              </button>
+              <button onClick={handleAllocateClick}>Allocate</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {selectedPatientData && (
+        <div>
+          <h3>Selected Patient Data:</h3>
+          <pre>{JSON.stringify(selectedPatientData, null, 2)}</pre>
+        </div>
+      )}
+    </div>
+  );
+}

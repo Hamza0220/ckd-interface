@@ -1,0 +1,91 @@
+.view-patient {
+  list-style: none;
+  border: 2px solid grey;
+  border-radius: 25px;
+  width: 28%;
+  height: auto;
+  margin: auto 1px 1px 39%;
+}
+.patient-list {
+  position: absolute;
+  border: 2px solid lightgray;
+  border-radius: 13px;
+  border-bottom-right-radius: 1px;
+  border-bottom-style: dashed;
+  border-bottom-width: revert;
+  border-end-start-radius: 50px;
+  margin: 43px 1px 7px 14px;
+}
+.patient-list ul {
+  list-style: none;
+}
+.profile-picture {
+  width: 150px; /* Adjust the size as needed for your passport-sized image */
+  height: 150px; /* Adjust the size as needed for your passport-sized image */
+  border-radius: 50%;
+  margin: auto;
+  display: block;
+}
+h2 {
+  font-size: 27px;
+  margin: 20px 6px 19px 18px;
+}
+.medical-history {
+  border: 2px solid grey;
+  border-radius: 20px;
+  /* display: flex; */
+  position: relative;
+  /* left: 34%; */
+  /* display: inline-block; */
+  left: 68%;
+  bottom: 460px;
+  text-align: center;
+  /* text-decoration: none; */
+  list-style: none;
+  width: 30%;
+  height: auto;
+}
+.medical-history li {
+  list-style: none;
+}
+.lab-reports {
+  border: 2px solid grey;
+  border-radius: 15px;
+  width: 24%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: -658px 12px 4px 203px;
+}
+.patient-btn {
+  margin: 5px;
+  border: 2px solid #cbea9b;
+  border-radius: 4px;
+  padding: 0.4rem;
+  background: #9ca68d45;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+}
+.patient-btn:hover {
+  background: #319f39;
+  color: white;
+}
+.patient-active {
+  background: #319f39;
+  color: white;
+}
+.fs-7 {
+  font-size: larger;
+  font-weight: 700;
+}
+.gry {
+  border-color: gray !important;
+}
+.text-start {
+  text-align: left!important;
+  color: #159215;
+}

@@ -1,0 +1,38 @@
+ // State for storing login form data
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  
+  const handleLogin = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(email, password);
+      const currentUser = userCredential.user;
+      const doctorId = currentUser.uid;
+  
+      // Retrieve doctor data from Firestore
+      const doctorsRef = collection(firestore, 'doctors');
+      const querySnapshot = await getDocs(query(doctorsRef, where('uid', '==', doctorId)));
+      if (querySnapshot.size !== 1) {
+        console.error('Doctor data not found');
+        return;
+      }
+  
+      const doctorDoc = querySnapshot.docs[0];
+      const doctorData = doctorDoc.data();
+  
+      // Store doctor login information in Firestore
+      const loginTime = new Date().getTime();
+      const loginEventsRef = doc(firestore, `doctorLogins/${doctorId}/loginEvents/${loginTime}`);
+      await setDoc(loginEventsRef, {
+        name: doctorData.displayName,
+        loginTime: loginTime
+      });
+  
+      console.log('User logged in');
+      // Redirect to the doctor page using react-router-dom
+      navigate('/DoctorDashboard');
+    } catch (error) {
+      toast.error('Email or Password is invalid');
+      console.error('Login error:', error);
+    }
+  };
+  

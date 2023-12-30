@@ -1,0 +1,30 @@
+.files {
+  border: 2px solid grey;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 3px 7px 0px 8px;
+}
+// .image {
+//   margin: 2px px 11px 3px 4px;
+// }
+
+/* labreports.scss */
+// .files {
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap; /* Allow items to wrap to the next line if there isn't enough space */
+//   }
+
+.image {
+  border: 2px solid;
+  height: 65px;
+  margin: 2px;
+}
+
+/* Other styling for images, if needed */
+.image img {
+  max-width: 100px;
+  cursor: pointer;
+}
