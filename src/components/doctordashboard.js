@@ -10,12 +10,13 @@ import { BiSolidUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { UserContext } from "./main-layout/UserContext";
+import Modal from "react-modal";
 
 function DoctorDashboard() {
   const { user } = useContext(UserContext);
   console.log("doctor dashboard",user)
   const navigate = useNavigate();
-
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const redirectToNotifications = () => {
     navigate("/Notifications"); // Replace with your route
   };
@@ -101,7 +102,13 @@ function DoctorDashboard() {
   //     }
   //   });
   // };
+  const openLogoutModal = () => {
+    setIsLogoutModalOpen(true);
+  };
 
+  const closeLogoutModal = () => {
+    setIsLogoutModalOpen(false);
+  };
   const openChat = () => {
     navigate("/DoctorChat"); // Replace with your route
   };
@@ -175,9 +182,23 @@ function DoctorDashboard() {
       {/* <button id="open-chat-button" onClick={openChat}>
         Open Chat
       </button> */}
-      <button className="logout-btn" onClick={logout}>
-        Logout
-      </button>
+   <button className="logout-btn" onClick={openLogoutModal}>
+            Logout
+          </button>
+          <Modal
+  isOpen={isLogoutModalOpen}
+  onRequestClose={closeLogoutModal}
+  contentLabel="Logout Confirmation"
+  className="confirmation-modall"
+>
+  <div>
+    <h2 className="confirmation-message">Are you sure you want to log out</h2>
+    <div className="confirmation-buttons">
+      <button onClick={logout}>Yes</button>
+      <button onClick={closeLogoutModal}>No</button>
+    </div>
+  </div>
+</Modal>
 
       {/* <button className="btn" onClick={handleemergency}>
         Emergency Room
