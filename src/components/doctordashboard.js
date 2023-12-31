@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import firebase, { auth, db } from "./firebaseconfig"; // Import your firebase.js file
 import "firebase/auth";
@@ -9,7 +9,11 @@ import "./doctordashboard.scss";
 import { BiSolidUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
+import { UserContext } from "./main-layout/UserContext";
+
 function DoctorDashboard() {
+  const { user } = useContext(UserContext);
+  console.log("doctor dashboard",user)
   const navigate = useNavigate();
 
   const redirectToNotifications = () => {
@@ -33,9 +37,9 @@ function DoctorDashboard() {
 
   useEffect(() => {
     // Check if there's a currently authenticated user
-    const user = auth.currentUser;
+    // const user = user.uid;
 
-    if (user) {
+    if (user.uid) {
       const userId = user.uid;
       const usersRef = doc(db, "doctors", userId);
 
@@ -165,9 +169,9 @@ function DoctorDashboard() {
       </button> */}
       <button onClick={viewPatientProfile}>View patient's List</button>
       {/* <button onClick={viewPatientList}>View Patient's List</button> */}
-      <button id="open-chat-button" onClick={openChat}>
+      {/* <button id="open-chat-button" onClick={openChat}>
         Open Chat
-      </button>
+      </button> */}
       <button className="logout-btn" onClick={logout}>
         Logout
       </button>

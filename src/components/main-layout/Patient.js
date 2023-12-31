@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./main.scss";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -18,9 +18,11 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { Spinner } from "react-bootstrap";
+import { UserContext } from "./UserContext";
 // Import the Firebase instances
 
 export default function Patient() {
+  const { login } = useContext(UserContext);
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
   const [emailValid, setEmailValid] = useState(true);
@@ -68,6 +70,7 @@ export default function Patient() {
         ) {
           // Patient's status is accepted or pending, navigate to PatientDashboard
           setIsLoading(false);
+          login({ uid: patientDoc.id, ...patientData });
           navigate("/PatientDashboard");
         } else {
           // Status is null or rejected, navigate to SelectDoctor

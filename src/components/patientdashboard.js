@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { auth, db, firebaseStorage } from "./firebaseconfig"; // Update the imports
 import { getDownloadURL, uploadBytes } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +18,10 @@ import {
   arrayUnion,
   setDoc,
 } from "firebase/firestore"; // Updated Firestore imports
+import { UserContext } from "./main-layout/UserContext";
 
 const PatientDashboard = () => {
+  const { user } = useContext(UserContext);
   const [selectedLabReport, setSelectedLabReport] = useState(null);
   const [selectedMedicalReport, setSelectedMedicalReport] = useState(null);
   const [patientName, setPatientName] = useState("");
@@ -30,9 +32,8 @@ const PatientDashboard = () => {
   };
 
   useEffect(() => {
-    const user = auth.currentUser;
-
-    if (user) {
+    // const user = auth.currentUser;
+    if (user && user.uid) {
       const userId = user.uid;
       const usersRef = doc(db, "patient-data", userId);
 
@@ -54,7 +55,7 @@ const PatientDashboard = () => {
           console.error("Error getting document:", error);
         });
     }
-  }, []);
+  }, [user.uid]);
 
   const handleShowLabReports = () => {
     navigate("/lab-reports"); // Navigate to the LabReportsPage.js
@@ -171,6 +172,11 @@ const PatientDashboard = () => {
             <button className="user-profile-button">Profile</button>
           </Link>
         </div>
+        <div className="text-center">
+        <span className="welcome">
+          Welcome <span>{patientName}</span>
+        </span>
+      </div>
         <div>
           <div id="profile " className="profile " onClick={showProfileInfo}>
             <div id="profileNameBox" className="profile-name-box">
@@ -181,11 +187,7 @@ const PatientDashboard = () => {
           </div>
         </div>
       </div>
-      <div className="text-center">
-        <span className="welcome">
-          Welcome <span>{patientName}</span>
-        </span>
-      </div>
+
       <div className="psd">
         <div className="container mt-3">
           <button type="button" onClick={handlepatientnotification}>
@@ -235,9 +237,9 @@ const PatientDashboard = () => {
               <button onClick={handleLogout}>Logout</button>
             </div>
           )}
-          <button id="open-chat-button" onClick={handleOpenChat}>
+          {/* <button id="open-chat-button" onClick={handleOpenChat}>
             Open Chat
-          </button>
+          </button> */}
           <button>View Statistics</button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   collection,
   getDocs,
@@ -10,9 +10,12 @@ import {
 import { auth, db } from "./firebaseconfig";
 import { Dropdown } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { UserContext } from "./main-layout/UserContext";
 
 function Hardware() {
-  const currentUser = auth.currentUser;
+  const { user } = useContext(UserContext);
+  const currentUser =user.uid;
+  // const currentUser = auth.currentUser;
   const currentDoctorId = currentUser?.uid;
   const [hardwareList, setHardwareList] = useState([]);
   console.log("hardwareList", hardwareList);
@@ -21,11 +24,12 @@ function Hardware() {
   const [isRefresh, setIsRefresh] = useState(false);
 
   useEffect(() => {
+   if (user.uid){
     const fetchPatientsAndHardware = async () => {
       // Fetch patients
       const q = query(
         collection(db, "patient-data"),
-        where("doctorId", "==", currentDoctorId)
+        where("doctorId", "==", currentUser)
       );
       const querySnapshot = await getDocs(q);
       const Arr = [];
@@ -47,7 +51,8 @@ function Hardware() {
     };
 
     fetchPatientsAndHardware();
-  }, [isRefresh]);
+  }
+  }, [isRefresh ,user.uid]);
 
   const handleChangeHardware = (value) => {
     let find = hardwareList.find((el) => el.name === value);

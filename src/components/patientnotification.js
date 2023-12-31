@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { auth, db } from "./firebaseconfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { UserContext } from "./main-layout/UserContext";
 
 export default function PatientNotification() {
+  const { user } = useContext(UserContext);
   const [notifications, setNotifications] = useState([]);
-  const currentUser = auth.currentUser;
-  const currentPatientId = currentUser?.uid;
+  // const currentUser = auth.currentUser;
+  const currentUser = user.uid;
+  const currentPatientId = user.uid;
 
   useEffect(() => {
+
+
+    if(user && user.uid){
+    
     const fetchData = async () => {
       try {
         if (currentPatientId) {
           const q = query(
             collection(db, "patientNotifications"),
 
-            where("patientId", "==", currentUser?.uid)
+            where("patientId", "==", currentUser)
           );
           console.log("current patient", currentPatientId);
 
@@ -32,12 +39,13 @@ export default function PatientNotification() {
     };
 
     fetchData();
-
+  }
     // Cleanup if needed
-    return () => {
-      // Any cleanup code here, if necessary
-    };
-  }, [currentPatientId]);
+    // return () => {
+    //   // Any cleanup code here, if necessary
+    // };
+    
+  }, [currentPatientId,user.uid]);
 
   return (
     <div>

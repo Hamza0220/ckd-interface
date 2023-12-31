@@ -20,8 +20,10 @@ import { toast } from "react-toastify";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { Spinner } from "react-bootstrap";
 // Import the Firebase instances
-
+import { useContext } from 'react';
+import { UserContext } from './UserContext';
 export default function Doctor() {
+  const { login } = useContext(UserContext);
   const handleForgotPassword = () => {
     // Implement the logic to handle forgot password here
   };
@@ -109,6 +111,7 @@ export default function Doctor() {
             "You can't be logged in. Your account is disabled."
           );
         }
+        login({ uid: doctorDoc.id, ...doctorData });
         console.log("Doctor logged in successfully!");
         setIsLoading(false);
         navigate("/DoctorDashboard");
@@ -124,6 +127,7 @@ export default function Doctor() {
       console.error(error);
       setShowWrongPasswordAlert(true);
     }
+
   };
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { auth, db, firestore } from "./firebaseconfig";
 import "firebase/firestore";
 import {
@@ -14,8 +14,10 @@ import {
 } from "firebase/firestore";
 import { runTransaction, serverTimestamp } from "firebase/firestore";
 import "./Notification.scss";
+import { UserContext } from "./main-layout/UserContext";
 
 function Notifications() {
+  const { user } = useContext(UserContext);
   const [notifications, setNotifications] = useState([]);
   const [data, setData] = useState({});
   const currentUser = auth.currentUser;
@@ -34,6 +36,8 @@ function Notifications() {
     }
   };
   useEffect(() => {
+    if (user.uid) {
+      const currentDoctorId = user.uid;
     const getData = async () => {
       const q = query(
         collection(db, "notifications"),
@@ -48,7 +52,9 @@ function Notifications() {
       setNotifications(notificationArray.reverse()); // Reverse the array to show new notifications at the top
     };
     getData();
-  }, [currentDoctorId]);
+  }
+
+  }, [currentDoctorId,user.uid]);
 
   const acceptNotification = async (
     notificationId,
