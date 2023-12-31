@@ -78,6 +78,7 @@ export default function Patient() {
           setIsLoading(false);
         }
       } else {
+        setIsLoading(false);
         toast.error("Patient data not found.");
       }
     } catch (error) {

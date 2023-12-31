@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { auth, db, firebaseStorage } from "./firebaseconfig"; // Update the imports
 import { listAll, ref as sRef, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import "./labreports.scss";
+import { UserContext } from "./main-layout/UserContext";
 
 const LabReportsPage = () => {
+  const { user } = useContext(UserContext);
   const [uploadedLabReports, setUploadedLabReports] = useState([]);
-  const currentUserId = auth.currentUser.uid; // Get the unique ID of the current user
+  const currentUserId = user.uid; // Get the unique ID of the current user
 
   useEffect(() => {
-    // Create a reference to the user's lab reports folder
+    // Create a reference to the user's lab reports folder\
+    if (user.uid){
     const labReportsStorageRef = sRef(
       firebaseStorage,
       `labReports/${currentUserId}`
@@ -31,7 +34,8 @@ const LabReportsPage = () => {
       .catch((error) => {
         console.error("Error fetching uploaded lab reports", error);
       });
-  }, [currentUserId]);
+    }
+  }, [currentUserId,user.uid]);
 
   const openFullFile = (downloadURL) => {
     window.open(downloadURL, "_blank");

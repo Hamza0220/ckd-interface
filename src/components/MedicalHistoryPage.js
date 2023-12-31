@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { listAll, ref as sRef, getDownloadURL } from "firebase/storage";
 import { firebaseStorage, auth } from "./firebaseconfig"; // Make sure to import auth
 import "./labreports.scss";
+import { UserContext } from "./main-layout/UserContext";
 
 const MedicalHistoryPage = () => {
+  const { user } = useContext(UserContext);
   const [uploadedMedicalReports, setUploadedMedicalReports] = useState([]);
 
   useEffect(() => {
     // Check if there's a currently authenticated user
-    const user = auth.currentUser;
+    // const user = auth.currentUser;
 
-    if (user) {
+    if (user.uid) {
       const currentUserId = user.uid;
       const medicalReportsStorageRef = sRef(
         firebaseStorage,
@@ -33,7 +35,7 @@ const MedicalHistoryPage = () => {
           console.error("Error fetching uploaded medical reports", error);
         });
     }
-  }, []);
+  }, [user.uid]);
 
   const openFullFile = (downloadURL) => {
     window.open(downloadURL, "_blank");

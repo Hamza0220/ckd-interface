@@ -118,6 +118,8 @@ export default function Doctor() {
 
         // Proceed with navigation or other actions
       } else {
+        toast.error("Doctor not found.");
+        setIsLoading(false);
         console.log("Doctor not found.");
         // Handle the case when doctor data is not found
       }

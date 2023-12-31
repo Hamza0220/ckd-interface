@@ -37,6 +37,7 @@ const AdminLogin = () => {
           navigate('/admin');
         } else {
           console.log('User is not an admin.');
+          setIsLoading(false);
           setShowWrongPasswordAlert(true);
           setTimeout(() => {
             setShowWrongPasswordAlert(false);
@@ -46,14 +47,18 @@ const AdminLogin = () => {
       })
       .catch((error) => {
         // setShowWrongPasswordAlert(true);
+        setIsLoading(false);
         toast.error('Email or Password is invalid')
         console.error(error);
         if (error.code === 'auth/user-not-found') {
           setErrorMessage('User not found. Please check your email.');
+          setIsLoading(false);
         } else if (error.code === 'auth/wrong-password') {
           setErrorMessage('Incorrect password. Please try again.');
+          setIsLoading(false);
         } else {
           setErrorMessage('An error occurred. Please try again later.');
+          setIsLoading(false);
         }
       });
   };

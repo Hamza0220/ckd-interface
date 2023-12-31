@@ -85,16 +85,16 @@ const Admin = () => {
             </button>
           </li>
         </ul>
-
-        <h2>Patient Management</h2>
-        <ul>
+{/* 
+        <h2>Patient Management</h2> */}
+        {/* <ul>
           <li>
             <button id="modify-patient-record">Modify Patient Record</button>
           </li>
           <li>
             <button id="update-patient-profile">Update Patient Profile</button>
           </li>
-        </ul>
+        </ul> */}
         <div className="adminlogout" id="adminlogout">
           <button className="logout-btn" onClick={openLogoutModal}>
             Logout

@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import "./Registerdoctor.scss";
+import "./RegisterAttendent.scss";
 import { useFormik } from "formik";
 
 const RegisterAttendent = () => {

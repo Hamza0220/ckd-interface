@@ -13,7 +13,7 @@
   /* Add this CSS to your stylesheet */
   .user-profile-button {
     width: 146px;
-    background-color: #766f59;
+    background-color: rgb(38, 127, 181);
     color: #fff;
     border: none;
     padding: 10px;
@@ -136,6 +136,7 @@
 
 .profile-name-box {
   text-align: center;
+  color: lightseagreen;
 }
 
 .profile-box {
@@ -144,8 +145,8 @@
 
 .profile-dropdown {
   position: absolute;
-  top: 23%;
-  right: 0;
+  top: 29%;
+  right: 4px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
