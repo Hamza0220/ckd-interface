@@ -4,7 +4,7 @@ import Patient from "./Patient";
 import Attendent from "./Attendent";
 import Doctor from "./Doctor";
 import AdminLogin from "../AdminLogin";
-
+import "./index.scss"
 export default function Layout() {
   const [show, setShow] = useState("doctor");
   const handleAdminButtonClick = () => {
@@ -21,7 +21,7 @@ export default function Layout() {
   };
   return (
     <>
-      <div>
+      <div className="background-image">
         <div className="heading">
           <h1>HYPERKALEMIA MONITORING SYSTEM</h1>
         </div>

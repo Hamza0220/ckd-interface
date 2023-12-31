@@ -43,81 +43,58 @@ const Admin = () => {
   return (
     <div className="background-container">
       <div className="admin">
+        <div id="card1" className="card">
         <h4>Welcome Hamza!</h4>
-        <h5>Doctor Management</h5>
-        <div className="background-image"></div>
-        <div>
-          {/* <Link to="/Adminprofile">
-            <div className="icon-container">
-              <img
-                src="https://cdn-icons-png.flaticon.com/128/2345/2345338.png"
-                alt="adminavatar"
-                className="adminavatar"
-              />
-            </div>
-            <button className="user-profile-button">Profile</button>
-          </Link> */}
+     
         </div>
-
-        <ul>
-          <li>
+        <div id="card2" className="card">
+        <h5>Doctor Management</h5>
+        </div>
+        
+        <div className="background-image"></div>
+        
+            <div className="col-lg-12 ">
             <button
+            className="space-btn"
               id="disable-doctor"
               onClick={() => navigate("/doctor-disable")}
             >
               Disable Doctor
             </button>
-          </li>
-          <li>
-            {/* <button id="update-doctor">Update Doctor Profile</button> */}
-          </li>
-          <li>
-            <button id="register-doctor" onClick={handleRegisterDoctorClick}>
+            <button className="space-btn" id="register-doctor" onClick={handleRegisterDoctorClick}>
               Register Doctor
             </button>
-          </li>
-          <li>
             <button
               id="register-attendent"
+              className="space-btn"
               onClick={handleRegisterAttendentClick}
             >
               Register Attendent
             </button>
-          </li>
-        </ul>
-{/* 
-        <h2>Patient Management</h2> */}
-        {/* <ul>
-          <li>
-            <button id="modify-patient-record">Modify Patient Record</button>
-          </li>
-          <li>
-            <button id="update-patient-profile">Update Patient Profile</button>
-          </li>
-        </ul> */}
-        <div className="adminlogout" id="adminlogout">
+            <div className="adminlogout" id="adminlogout">
           <button className="logout-btn" onClick={openLogoutModal}>
             Logout
           </button>
         </div>
-
-        <Modal
-          isOpen={isLogoutModalOpen}
-          onRequestClose={closeLogoutModal}
-          contentLabel="Logout Confirmation"
-        >
-          <div className="confirmation-modal">
-            <h2>Are you sure you want to log out?</h2>
-            <div className="confirmation-buttons">
-              <button id="yes" onClick={handleLogout}>
-                Yes
-              </button>
-              <button id="no" onClick={closeLogoutModal}>
-                No
-              </button>
             </div>
-          </div>
-        </Modal>
+
+
+            <Modal
+  isOpen={isLogoutModalOpen}
+  onRequestClose={closeLogoutModal}
+  contentLabel="Logout Confirmation"
+  className="confirmation-modal"
+>
+  <div>
+    <h2 className="confirmation-message">Are you sure you want to log out</h2>
+    <div className="confirmation-buttons">
+      <button onClick={handleLogout}>Yes</button>
+      <button onClick={closeLogoutModal}>No</button>
+    </div>
+  </div>
+</Modal>
+
+
       </div>
     </div>
   );

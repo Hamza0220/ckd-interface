@@ -155,13 +155,15 @@ export default function Patient() {
             </div>
           )}
         </form>
-        <p>
+        <p className="card">
+          
           Don't have an account yet?
+          </p>
           <br />
-          <a href="#" onClick={handleSignupClick}>
+          <button className="signup-btn" href="#" onClick={handleSignupClick}>
             Sign Up
-          </a>
-        </p>
+          </button>
+        
       </div>
     </>
   );

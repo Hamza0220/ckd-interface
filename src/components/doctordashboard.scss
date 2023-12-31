@@ -1,6 +1,19 @@
 .DoctorDashboard{
        /* CSS styles go here */
-    /* Set font color to white */
+
+      background-image: url("../components/doctor.png"); /* Replace with the actual path */
+      background-size: 100% 100%; /* Stretches the image to fill the container */
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      width: 100vw; /* Full viewport width */
+      height: 100vh; /* Full viewport height */
+      position: fixed;
+      top: 55px;
+      left: 0px;
+      z-index: -1;
+
+    
     body,
     h1,
     h2,
@@ -36,10 +49,11 @@
       font-size: 20px;
       text-align: center;
       margin-bottom: 15px;
+      color: #eff8f2;
     }
     .user-profile-button {
       position: absolute;
-      top: 22%;
+      top: 13%;
       left: 20px;
       width: 146px;
       background-color: #766f59;
@@ -67,38 +81,49 @@
     .avatar{
       width: 60px;
       position: absolute;
-      top: 93px;
+      top: 30px;
       left: 67px;
     }
 button {
-      background-color: transparent;
-      border: 4px solid rgb(89, 188, 28);
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-bottom: 10px;
-      padding: 14px;
-      transition: background-color 0.3s, color 0.3s;
-      width: 30%;
-      display: block;
-      margin: auto;
-      margin-top: 10px;
+  background-color: #588187a1;
+  border: 3px solid rgb(74 119 139);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 17px;
+  margin-bottom: 10px;
+  padding: 14px;
+  transition: background-color 0.3s, color 0.3s;
+  width: 30%;
+  display: block;
+  margin: auto;
+  margin-top: 13px;
+  color: #343a40;
+  border-radius: 10px
   }
   .profile-name-box {
-position: relative;
-left: 45%;
-top: 35px;
+
+    position: relative;
+    left: 42%;
+    top: 81px;
+    text-align: center;
+    color: #17484e;
+    font-size: 18px;
+    font-weight: bold;
 }
+
     button:hover {
-      background-color: white;
-      color: #58af58;
+      background-color: #415255;
+      color: #34a734;
+      box-shadow: 0px 0px 5px #af5f57, 0px 0px 30px #a5a343, 0px 0px 90px #a04c7b;
+      border-color: #5b9f7f;
+      border-radius: 17px;
     }
 
     .logout-btn {
-      background-color: rgb(174, 121, 121);
-      border: 4px solid rgb(89, 188, 28);
+      background-color: rgb(57 94 99);
+      border: 4px solid rgb(124 162 168);
       border-radius: 20px;
-      color: rgb(138, 29, 29);
+      color: rgb(216 206 206);
       cursor: pointer;
       font-size: 16px;
       padding: 10px;
@@ -108,8 +133,8 @@ top: 35px;
     }
 
     .logout-btn:hover {
-      background-color: white;
-      color: #58af58;
+      background-color: #88a7aa;
+      color: #ecf2ee;
     }
 
     .logout-btn:focus {
@@ -186,14 +211,19 @@ top: 35px;
     position: relative;
     top: -30px;
     padding: 20px;
-    background-color: rgb(95, 105, 72);
-    color: rgb(223, 214, 214);
+    background-color: rgb(103 166 174);
+    color: rgb(233 243 235);
     margin: auto;
     width: 35%;
     font-size: 24px;
     font-weight: bold;
     border-radius: 10px;
     text-align: center;
-
+  }
+  #d-card{
+    width: 23%;
+    height: 37px;
+    padding: 4px;
+    background-color: #88b9c3;
   }
   }

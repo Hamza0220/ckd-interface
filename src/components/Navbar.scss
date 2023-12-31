@@ -1,9 +1,17 @@
 .container-fluid{
     
-    background-color: rgb(126, 198, 93);
+    background-color: rgb(170 213 195);
     padding: 20px;
 
     .nav-link{
         cursor: pointer;
     }
 }
+.navbar {
+    border: none; // Removes any border
+    margin: 0; // Removes margin
+    padding: 0; // Removes padding
+    // background-color: #yourColor; // Set the background color if needed
+    // other styles...
+  }
+  

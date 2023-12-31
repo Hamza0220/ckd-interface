@@ -128,7 +128,10 @@ function DoctorDashboard() {
       <div className="welcome">
         Welcome <span>{doctorName}</span>
       </div>
+      <div id="d-card" className="card">
+
       <h2>Patient Info</h2>
+      </div>
 
       <Link to="/doctorprofile">
         <div className="icon-container">
