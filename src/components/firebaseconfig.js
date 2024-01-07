@@ -4,7 +4,6 @@ import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage'; 
 
-
 const firebaseConfig = {
   apiKey: 'AIzaSyAhelk_39kII2gWBtqYZvf0BLbpb6VLkaE',
   authDomain: "ckd-web-interface.firebaseapp.com",
