@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./main.scss";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { ref } from "firebase/database"; // Use 'ref' and 'get' from here
-import { push } from "firebase/database"; // Use 'push' and 'getDatabase' from here
+// import { ref } from "firebase/database"; // Use 'ref' and 'get' from here
+// import { push } from "firebase/database"; // Use 'push' and 'getDatabase' from here
 import {
   auth,
-  database as firebaseDatabase,
+  // database as firebaseDatabase,
   firestore,
 } from "../firebaseconfig";
 // import {
@@ -23,7 +23,7 @@ export default function Attendent() {
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
   const [emailValid, setEmailValid] = useState(true);
   const navigate = useNavigate();
-  const [showWrongPasswordAlert, setShowWrongPasswordAlert] = useState(false); // Declare the state here
+  const [ setShowWrongPasswordAlert] = useState(false); // Declare the state here
   const [attendentEmail, setAttendentEmail] = useState("");
   const [attendentPasswod, setAttendentPasswod] = useState("");
   // Function to handle patient login

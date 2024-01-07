@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./main.scss";
 // import "./main.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { ref } from "firebase/database"; // Use 'ref' and 'get' from here
-import { push } from "firebase/database"; // Use 'push' and 'getDatabase' from here
+// import { ref } from "firebase/database"; // Use 'ref' and 'get' from here
+// import { push } from "firebase/database"; // Use 'push' and 'getDatabase' from here
 import {
   auth,
   db,
-  database as firebaseDatabase,
-  firestore,
+  // database as firebaseDatabase,
+  // firestore,
 } from "../firebaseconfig";
 // import {
 //   auth,
@@ -24,48 +24,48 @@ import { useContext } from 'react';
 import { UserContext } from './UserContext';
 export default function Doctor() {
   const { login } = useContext(UserContext);
-  const handleForgotPassword = () => {
-    // Implement the logic to handle forgot password here
-  };
+  // const handleForgotPassword = () => {
+  //   // Implement the logic to handle forgot password here
+  // };
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
   const [emailValid, setEmailValid] = useState(true);
-  const [showSignup, setShowSignup] = useState(false);
-  const [showPatientLogin, setShowPatientLogin] = useState(true);
-  const [showDoctorLogin, setShowDoctorLogin] = useState(true);
-  const [showAdminLogin, setShowAdminLogin] = useState(true);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [showSignup, setShowSignup] = useState(false);
+  // const [showPatientLogin, setShowPatientLogin] = useState(true);
+  // const [showDoctorLogin, setShowDoctorLogin] = useState(true);
+  // const [showAdminLogin, setShowAdminLogin] = useState(true);
+  // const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [showWrongPasswordAlert, setShowWrongPasswordAlert] = useState(false); // Declare the state here
+  const [ setShowWrongPasswordAlert] = useState(false); // Declare the state here
 
   // State for storing login form data
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  // const [loginEmail, setLoginEmail] = useState("");
+  // const [loginPassword, setLoginPassword] = useState("");
   const [doctorEmail, setdoctorEmail] = useState("");
   const [doctorPassword, setdoctorPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const storePatientLogin = (patientId, patientName) => {
-    const loginTime = new Date().getTime(); // Get the current timestamp in milliseconds
-    // Get the database instance
-    const loginEventsRef = ref(
-      firebaseDatabase,
-      `patientLogins/${patientId}/loginEvents`
-    );
+  // const storePatientLogin = (patientId, patientName) => {
+  //   const loginTime = new Date().getTime(); // Get the current timestamp in milliseconds
+  //   // Get the database instance
+  //   const loginEventsRef = ref(
+  //     firebaseDatabase,
+  //     `patientLogins/${patientId}/loginEvents`
+  //   );
 
-    push(loginEventsRef, {
-      name: patientName,
-      loginTime: loginTime,
-    })
-      .then(() => {
-        console.log("Patient login data saved to the database.");
-      })
-      .catch((error) => {
-        console.error("Error saving patient login data:", error);
-      });
-  };
+  //   push(loginEventsRef, {
+  //     name: patientName,
+  //     loginTime: loginTime,
+  //   })
+  //     .then(() => {
+  //       console.log("Patient login data saved to the database.");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error saving patient login data:", error);
+  //     });
+  // };
   // Function to handle patient login
 
   const handleEmailValidation = (event) => {
