@@ -48,7 +48,7 @@ function App() {
         theme="dark"
       />
       <Navbar
-        tittle="Hyperkalemia Monitoring System"
+        title="Hyperkalemia Monitoring System"
         AboutText="About Hyperkalemia"
       />
       <Routes>

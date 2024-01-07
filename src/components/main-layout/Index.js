@@ -21,6 +21,7 @@ export default function Layout() {
   };
   return (
     <>
+    
       <div className="background-image">
         <div className="heading">
           <h1>HYPERKALEMIA MONITORING SYSTEM</h1>

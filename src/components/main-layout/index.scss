@@ -1,12 +1,53 @@
 .background-image {
     background-image: url("../main-layout/mainlayout.png");
-    background-size: 100% 100%; /* Stretches the image */
+
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     width: 100%;
-    height: 86vh;
+    height: 100vh;
     position: fixed;
-    top: 88px;
+    top: 60px;
     left: 0;
     z-index: -1;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: auto;
+/* Media query for mobile devices */
+@media (max-width: 320px ) {
+    .background-image {
+        height: auto; /* Allows the container to grow with the content */
+        position: static; /* Allows the background to scroll with the page */
+        top: 0; /* Resets the top positioning */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        overflow-x: scroll;
+        overflow-y: auto;
+        min-width: auto; /* Ensure at least full width of the screen */
+        min-height: auto; /* Ensure at least full height of the screen*/
+overflow-x: calc(100%);
+    }
+    overflow: auto;
+    overflow-x: scroll;
+    overflow-y: auto;
+}
+@media (max-width: 375px ) {
+    .background-image {
+        height: auto; /* Allows the container to grow with the content */
+        position: static; /* Allows the background to scroll with the page */
+        top: 0; /* Resets the top positioning */
+        overflow: auto;
+        overflow-x: scroll;
+        overflow-y: auto;
+        min-width: auto; /* Ensure at least full width of the screen */
+        min-height: auto; /* Ensure at least full height of the screen*/
+overflow-x: calc(100%);
+    }
+    overflow: auto;
+    overflow-x: scroll;
+    overflow-y: auto;
+}
+
 }

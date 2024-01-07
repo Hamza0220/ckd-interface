@@ -1,17 +1,50 @@
-.container-fluid{
-    
-    background-color: rgb(170 213 195);
-    padding: 20px;
+.container-fluid {
+    background-color: rgb(170, 213, 195);
+    padding: 10px;
 
-    .nav-link{
+    .nav-link {
         cursor: pointer;
     }
 }
+
 .navbar {
-    border: none; // Removes any border
-    margin: 0; // Removes margin
-    padding: 0; // Removes padding
-    // background-color: #yourColor; // Set the background color if needed
-    // other styles...
-  }
-  
+    border: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 320px) {
+    .navbar {
+        /* Adjust navbar styles for mobile view */
+        padding: 5px; /* Example: reduce padding */
+        flex-direction: column; /* Stack navbar items vertically */
+    }
+
+    .container-fluid {
+        /* Adjust container styles for mobile view */
+        padding: 5px; /* Example: reduce padding */
+    }
+
+    .nav-link {
+        /* Adjust nav-link styles for mobile view */
+        padding: 5px 10px; /* Example: add padding for better touch targets */
+    }}
+    @media (max-width: 375px) {
+        .navbar {
+            /* Adjust navbar styles for mobile view */
+            padding: 5px; /* Example: reduce padding */
+            flex-direction: column; /* Stack navbar items vertically */
+        }
+    
+        .container-fluid {
+            /* Adjust container styles for mobile view */
+            padding: 5px; /* Example: reduce padding */
+        }
+    
+        .nav-link {
+            /* Adjust nav-link styles for mobile view */
+            padding: 5px 10px; /* Example: add padding for better touch targets */
+        }
+}
