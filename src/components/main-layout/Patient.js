@@ -1,19 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./main.scss";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {
   auth,
   db,
-  database as firebaseDatabase,
-  firestore,
+  // database as firebaseDatabase,
+  // firestore,
 } from "../firebaseconfig";
 import { toast } from "react-toastify";
 import {
-  collection,
-  query,
-  where,
-  getDocs,
+  // collection,
+  // query,
+  // where,
+  // getDocs,
   doc,
   getDoc,
 } from "firebase/firestore";
@@ -25,7 +25,7 @@ export default function Patient() {
   const { login } = useContext(UserContext);
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
-  const [emailValid, setEmailValid] = useState(true);
+  const [ setEmailValid] = useState(true);
   const [showSignup, setShowSignup] = useState(false);
   const [showPatientLogin, setShowPatientLogin] = useState(true);
   const [showDoctorLogin, setShowDoctorLogin] = useState(true);
