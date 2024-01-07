@@ -11,10 +11,10 @@ import { Link } from "react-router-dom";
 import {
   doc,
   getDoc,
-  collection,
-  query,
-  where,
-  updateDoc,
+  // collection,
+  // query,
+  // where,
+  // updateDoc,
   arrayUnion,
   setDoc,
 } from "firebase/firestore"; // Updated Firestore imports
@@ -33,7 +33,7 @@ const PatientDashboard = () => {
 
   useEffect(() => {
     // const user = auth.currentUser;
-    if (user && user.uid) {
+    if ( user.uid) {
       const userId = user.uid;
       const usersRef = doc(db, "patient-data", userId);
 
@@ -148,9 +148,9 @@ const PatientDashboard = () => {
       });
   };
 
-  const handleOpenChat = () => {
-    navigate("/patientchat");
-  };
+  // const handleOpenChat = () => {
+  //   navigate("/patientchat");
+  // };
   const handlepatientnotification = () => {
     navigate("/patientnotification");
   };

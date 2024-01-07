@@ -10,18 +10,18 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import { ref, push, get, update } from "firebase/database";
+// import { ref, push, get, update } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import "./selectdoctor.scss";
 import { toast } from "react-toastify";
 import DoctorProfileModal from "./DoctorProfileModal";
 const SelectDoctor = () => {
   const [doctors, setDoctors] = useState([]);
-  const [selectedDoctor, setSelectedDoctor] = useState(null); // Selected doctor state
+  // const [selectedDoctor, setSelectedDoctor] = useState(null); // Selected doctor state
   const [viewedDoctorProfile, setViewedDoctorProfile] = useState(null); // Viewed doctor's profile state
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const [patientName, setPatientName] = useState("");
+  // const [patientName, setPatientName] = useState("");
   const [show, setShow] = useState(false);
   useEffect(() => {
     const doctorsCollection = collection(firestore, "doctor-profile-data");
@@ -70,7 +70,7 @@ const SelectDoctor = () => {
       if (docSnap.exists()) {
         console.log("Document data:", docSnap);
         const currentPatient = docSnap.data();
-        const currentPatientId = docSnap.id;
+        // const currentPatientId = docSnap.id;
 
         if (
           currentPatient.notification_status === null ||

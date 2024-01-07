@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { auth, db, firebaseStorage } from "./firebaseconfig"; // Update the imports
+import { firebaseStorage } from "./firebaseconfig"; // Update the imports
 import { listAll, ref as sRef, getDownloadURL } from "firebase/storage";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./labreports.scss";
 import { UserContext } from "./main-layout/UserContext";
 

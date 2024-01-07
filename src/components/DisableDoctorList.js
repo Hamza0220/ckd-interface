@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { auth, firestore, db } from "./firebaseconfig";
+import {  firestore, db } from "./firebaseconfig";
 import "firebase/auth";
 import "firebase/database";
 import {
-  addDoc,
+  // addDoc,
   collection,
   doc,
-  getDoc,
+  // getDoc,
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import "./selectdoctor.scss";
 import { Dropdown } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -19,7 +19,7 @@ const DisableDoctorList = () => {
   const [isRefresh, setIsRefresh] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   console.log("doctors", doctors);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   useEffect(() => {
     const fetchDoctors = async () => {
       setIsLoading(true);

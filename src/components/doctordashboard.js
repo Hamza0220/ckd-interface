@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import firebase, { auth, db } from "./firebaseconfig"; // Import your firebase.js file
+import  { auth, db } from "./firebaseconfig"; // Import your firebase.js file
 import "firebase/auth";
 import "firebase/database";
 import { signOut } from "firebase/auth";
@@ -21,17 +21,17 @@ function DoctorDashboard() {
     navigate("/Notifications"); // Replace with your route
   };
   const [doctorName, setDoctorName] = useState("");
-  const [hardwareOptionsVisible, setHardwareOptionsVisible] = useState(false);
-  const [patientList, setPatientList] = useState([]);
+  // const [hardwareOptionsVisible, setHardwareOptionsVisible] = useState(false);
+  // const [patientList, setPatientList] = useState([]);
   const showPatientHardwareOptions = () => {
     navigate("/Hardware");
   };
   const viewEmergencyAlerts = () => {
     navigate("/EmergencyAlert");
   };
-  const viewMedicalHistory = () => {
-    navigate("/Medicalhistory");
-  };
+  // const viewMedicalHistory = () => {
+  //   navigate("/Medicalhistory");
+  // };
   const viewPatientProfile = () => {
     navigate("/Viewpatientprofile");
   };
@@ -62,7 +62,7 @@ function DoctorDashboard() {
           console.error("Error getting document:", error);
         });
     }
-  }, []);
+  }, [user.uid]);
   // const viewPatientList = ()=>{
   //   navigate('/Patientlist')
   // }
@@ -109,9 +109,9 @@ function DoctorDashboard() {
   const closeLogoutModal = () => {
     setIsLogoutModalOpen(false);
   };
-  const openChat = () => {
-    navigate("/DoctorChat"); // Replace with your route
-  };
+  // const openChat = () => {
+  //   navigate("/DoctorChat"); // Replace with your route
+  // };
   const logout = () => {
     signOut(auth)
       .then(() => {
@@ -122,9 +122,9 @@ function DoctorDashboard() {
         toast.error("Error logging out: " + error.message);
       });
   };
-  const handleemergency = () => {
-    navigate("/EmergencyRoom");
-  };
+  // const handleemergency = () => {
+  //   navigate("/EmergencyRoom");
+  // };
   return (
     <div className="DoctorDashboard">
       <div id="profileNameBox" className="profile-name-box">

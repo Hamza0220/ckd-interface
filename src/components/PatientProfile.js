@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { updateDoc } from "firebase/firestore";
 import { auth, config, db } from "./firebaseconfig"; // Import Firebase auth
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore"; // Import Firestore
+import { getFirestore, doc, getDoc } from "firebase/firestore"; // Import Firestore
 import "./patientprofile.scss"; // Import your SCSS file for styling
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { Spinner } from "react-bootstrap";
 function UserProfile() {
-  const [profilePicture] = useState("");
+  // const [profilePicture] = useState("");
   const [newProfilePicture, setNewProfilePicture] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -18,7 +18,7 @@ function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [file, setfile] = useState("");
   const [profilepic, setprofilepic] = useState("");
-  const [speciality, setSpeciality] = useState("");
+  const [speciality] = useState("");
   const [isRefresh, setIsRefresh] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -106,7 +106,7 @@ function UserProfile() {
 
   const setuserdata = async (downloadURL) => {
     const db = getFirestore();
-    const userRef = doc(db, "patient-profile-data", auth.currentUser.uid);
+    // const userRef = doc(db, "patient-profile-data", auth.currentUser.uid);
     const userData = {
       firstName,
       lastName,

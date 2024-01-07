@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { auth, db } from "./firebaseconfig";
+import {  db } from "./firebaseconfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { UserContext } from "./main-layout/UserContext";
 
@@ -13,7 +13,7 @@ export default function PatientNotification() {
   useEffect(() => {
 
 
-    if(user && user.uid){
+    if(user.uid){
     
     const fetchData = async () => {
       try {
@@ -45,7 +45,7 @@ export default function PatientNotification() {
     //   // Any cleanup code here, if necessary
     // };
     
-  }, [currentPatientId,user.uid]);
+  }, [currentUser,currentPatientId,user.uid]);
 
   return (
     <div>

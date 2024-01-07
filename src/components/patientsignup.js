@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
-import { auth, database } from "./firebaseconfig"; // Updated import
+import { auth } from "./firebaseconfig"; // Updated import
 import { useNavigate } from "react-router-dom";
 import "./patientsignup.css";
 import { toast } from "react-toastify";
@@ -12,7 +12,7 @@ import { Spinner } from "react-bootstrap";
 
 const Patientsignup = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [ setShowSuccessMessage] = useState(false);
   const navigate = useNavigate();
   const signUpSchema = Yup.object().shape({
     username: Yup.string()

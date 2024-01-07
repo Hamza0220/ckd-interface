@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./admin.scss";
 import { toast } from "react-toastify";
 import Modal from "react-modal"; // Import the React Modal component
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Admin = () => {
   const navigate = useNavigate();

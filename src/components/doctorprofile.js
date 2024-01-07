@@ -4,7 +4,7 @@ import {
   getFirestore,
   doc,
   getDoc,
-  setDoc,
+  // setDoc,
   updateDoc,
 } from "firebase/firestore"; // Firestore
 import "./patientprofile.scss"; // SCSS file for styling
@@ -13,7 +13,7 @@ import { Spinner } from "react-bootstrap";
 
 function UserProfile() {
   // State variables
-  const [profilePicture] = useState("");
+  // const [profilePicture] = useState("");
   const [newProfilePicture, setNewProfilePicture] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

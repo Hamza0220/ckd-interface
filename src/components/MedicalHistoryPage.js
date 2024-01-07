@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { listAll, ref as sRef, getDownloadURL } from "firebase/storage";
-import { firebaseStorage, auth } from "./firebaseconfig"; // Make sure to import auth
+import { firebaseStorage } from "./firebaseconfig"; // Make sure to import auth
 import "./labreports.scss";
 import { UserContext } from "./main-layout/UserContext";
 

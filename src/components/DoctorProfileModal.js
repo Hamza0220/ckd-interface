@@ -1,11 +1,11 @@
 // DoctorProfileModal.js
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 const DoctorProfileModal = ({ doctor, closeModal, show, setShow }) => {
   console.log(doctor);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
   return (
     <div>
       <Modal show={show} onHide={handleClose}>

@@ -10,16 +10,16 @@ import {
   updateDoc,
   addDoc,
   getDoc,
-  setDoc,
+  // setDoc,
 } from "firebase/firestore";
-import { runTransaction, serverTimestamp } from "firebase/firestore";
+// import { runTransaction, serverTimestamp } from "firebase/firestore";
 import "./Notification.scss";
 import { UserContext } from "./main-layout/UserContext";
 
 function Notifications() {
   const { user } = useContext(UserContext);
   const [notifications, setNotifications] = useState([]);
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
   const currentUser = auth.currentUser;
   const currentDoctorId = currentUser?.uid;
   const currentPatientId = currentUser?.uid;
@@ -131,17 +131,17 @@ function Notifications() {
         // Check if patientId is available before using it
         if (notificationData.patientName) {
           // Send a notification to the patient
-          const patientNotificationRef = await addDoc(
-            collection(firestore, "patientNotifications"),
-            {
-              text: `Your request has been Accepted by Dr. ${getname(
-                currentUser.email
-              )}`,
-              patientId: notificationData.currentpatient,
-              patientName: patientName,
-              doctorId: currentDoctorId,
-            }
-          );
+          // const patientNotificationRef = await addDoc(
+          //   collection(firestore, "patientNotifications"),
+          //   {
+          //     text: `Your request has been Accepted by Dr. ${getname(
+          //       currentUser.email
+          //     )}`,
+          //     patientId: notificationData.currentpatient,
+          //     patientName: patientName,
+          //     doctorId: currentDoctorId,
+          //   }
+          // );
 
           console.log("Patient notification sent.");
         } else {
@@ -225,17 +225,17 @@ function Notifications() {
       // Check if patientId is available before using it
       if (notificationData.patientName) {
         // Send a notification to the patient
-        const patientNotificationRef = await addDoc(
-          collection(firestore, "patientNotifications"),
-          {
-            text: `Your request has been rejected by Dr. ${getname(
-              currentUser.email
-            )}`,
-            patientId: notificationData.currentpatient,
-            patientName: patientName,
-            doctorId: currentDoctorId,
-          }
-        );
+        // const patientNotificationRef = await addDoc(
+        //   collection(firestore, "patientNotifications"),
+        //   {
+        //     text: `Your request has been rejected by Dr. ${getname(
+        //       currentUser.email
+        //     )}`,
+        //     patientId: notificationData.currentpatient,
+        //     patientName: patientName,
+        //     doctorId: currentDoctorId,
+        //   }
+        // );
 
         console.log("Patient notification sent.");
       } else {

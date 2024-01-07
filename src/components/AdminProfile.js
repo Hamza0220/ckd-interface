@@ -5,7 +5,7 @@ import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore"; // Impor
 import "./patientprofile.scss"; // Import your SCSS file for styling
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 function AdminProfile() {
-  const [profilePicture] = useState("");
+  // const [profilePicture] = useState("");
   const [newProfilePicture, setNewProfilePicture] = useState(null); // To hold the new profile picture
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -17,7 +17,7 @@ function AdminProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [file, setfile] = useState("");
   const [profilepic, setprofilepic] = useState("");
-  const [speciality, setSpeciality] = useState("");
+  const [speciality] = useState("");
   const [isRefresh, setIsRefresh] = useState(false);
   // const [btnDisable, setBtnDisable] = useState(false);
 

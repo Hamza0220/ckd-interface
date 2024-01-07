@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Navbar.scss';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 
 export default function Navbar(props) {
    const handleabout =() =>{

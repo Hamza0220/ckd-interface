@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { collection, query, getDocs, where } from "firebase/firestore";
-import { auth, db, firebaseStorage } from "./firebaseconfig";
+import { db, firebaseStorage } from "./firebaseconfig";
 import "./Viewpatientprofile.scss";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { Tab, Tabs } from "react-bootstrap";
@@ -13,8 +13,8 @@ export default function Viewpatientprofile() {
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [medicalHistory, setMedicalHistory] = useState([]);
   const [labReports, setLabReports] = useState([]); // Add state for lab reports
-  const [uploadedMedicalReports, setUploadedMedicalReports] = useState([]);
-  const [activeIndx, setActiveIndx] = useState(null);
+  // const [uploadedMedicalReports, setUploadedMedicalReports] = useState([]);
+  const [activeIndx] = useState(null);
   // const currentUser = auth.currentUser;
   // console.log("currennnt user", currentUser.uid);
   useEffect(() => {

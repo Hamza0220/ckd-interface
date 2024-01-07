@@ -1,6 +1,6 @@
 import React from "react";
 import "./EmergencyRoom.scss";
-import Popup from "reactjs-popup";
+// import Popup from "reactjs-popup";
 function EmergencyRoom() {
   function handleNotification(node, flag) {
     if (flag) {
