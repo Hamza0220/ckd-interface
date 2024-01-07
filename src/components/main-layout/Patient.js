@@ -26,11 +26,11 @@ export default function Patient() {
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
   const [ setEmailValid] = useState(true);
-  const [showSignup, setShowSignup] = useState(false);
-  const [showPatientLogin, setShowPatientLogin] = useState(true);
-  const [showDoctorLogin, setShowDoctorLogin] = useState(true);
-  const [showAdminLogin, setShowAdminLogin] = useState(true);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  // const [showSignup] = useState(false);
+  // const [showPatientLogin, setShowPatientLogin] = useState(true);
+  // const [showDoctorLogin, setShowDoctorLogin] = useState(true);
+  // const [showAdminLogin, setShowAdminLogin] = useState(true);
+  // const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [showWrongPasswordAlert, setShowWrongPasswordAlert] = useState(false); // Declare the state here
 
@@ -95,11 +95,10 @@ export default function Patient() {
   };
 
   const handleSignupClick = () => {
-    setShowSignup(true);
-    setShowPatientLogin(false);
-    setShowDoctorLogin(false);
-    setShowAdminLogin(false);
-    setIsAdminLoggedIn(false);
+    // setShowPatientLogin(false);
+    // setShowDoctorLogin(false);
+    // setShowAdminLogin(false);
+    // setIsAdminLoggedIn(false);
     navigate("Patientsignup");
   };
   const handlepatientForgotPassword = () => {
