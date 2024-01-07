@@ -20,7 +20,8 @@ export default function Navbar(props) {
           <a className="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li className="nav-item">
-          <a  className="nav-link" onClick={handleabout}>{props.AboutText}</a>
+        <a className="nav-link" href="/About" onClick={handleabout}>{props.AboutText}</a>
+
         </li>
       </ul>
 
