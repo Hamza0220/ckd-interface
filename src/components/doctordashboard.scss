@@ -19,18 +19,27 @@
        /* CSS styles go here */
 
       background-image: url("../components/doctor.png"); /* Replace with the actual path */
-      background-size: 100% 100%; /* Stretches the image to fill the container */
+      background-size: 100% 100%;
       background-repeat: no-repeat;
       background-position: center;
       background-attachment: fixed;
-      width: 100vw; /* Full viewport width */
-      height: 93vh; /* Full viewport height */
+      width: 100vw;
+      height: 96vh;
       position: fixed;
-      top: 55px;
+      top: 40px;
       left: 0px;
       z-index: -1;
-      overflow-y: auto; // Allows vertical scrolling
-
+      overflow-y: auto;
+      overflow-x: auto;
+      @media (max-width: 320px) {
+        .DoctorDashboard {
+          overflow: auto;
+          transform: none;
+          width: 100%; /* Allows interface to fit the screen width */
+          min-width: 100%; /* Reset min-width for small screens */
+          min-height: 100%;
+        }
+      }
       .DoctorDashboard .confirmation-buttons {
         display: flex;
         justify-content: center;
@@ -162,7 +171,7 @@ button {
       cursor: pointer;
       font-size: 16px;
       padding: 10px;
-      width: 15%;
+      width: auto;
       transition: background-color 0.3s, color 0.3s;
 
     }
@@ -246,14 +255,20 @@ button {
     position: relative;
     top: -30px;
     padding: 20px;
-    background-color: rgb(103 166 174);
-    color: rgb(233 243 235);
+    background-color: rgb(103, 166, 174);
+    color: rgb(233, 243, 235);
     margin: auto;
     width: 35%;
     font-size: 24px;
     font-weight: bold;
     border-radius: 10px;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
   }
   #d-card{
     width: 23%;
@@ -261,4 +276,20 @@ button {
     padding: 4px;
     background-color: #88b9c3;
   }
+  .d-profile {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center items horizontally */
   }
+  
+  @media (max-width: 320px) { /* Adjust breakpoint as needed for mobile view */
+    .d-profile {
+      flex-direction: column; /* Stack items vertically in mobile view */
+      justify-content: flex-start; /* Align items to the start of the container */
+    }
+  
+    .d-profile .icon-container {
+      margin-bottom: 10px; /* Add some space between the icon and the button */
+    }
+  }
+}  

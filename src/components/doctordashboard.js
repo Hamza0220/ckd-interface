@@ -133,23 +133,26 @@ function DoctorDashboard() {
         {doctorName && <span className="mt-0">{doctorName}</span>}
       </div>
       <div className="welcome">
-        Welcome <span>{doctorName}</span>
+        Welcome- <span>{doctorName}</span>
       </div>
       <div id="d-card" className="card">
 
       <h2>Patient Info</h2>
       </div>
+      <div className="d-profile" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
+  <Link to="/doctorprofile">
+    <div className="icon-container">
+      <img
+        src="https://cdn-icons-png.flaticon.com/128/2785/2785482.png"
+        alt="Avatar"
+        className="avatar"
+      />
+    </div>
+    <button className="user-profile-button">Profile</button>
+  </Link>
+</div>
 
-      <Link to="/doctorprofile">
-        <div className="icon-container">
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/2785/2785482.png"
-            alt="Avatar"
-            className="avatar"
-          />
-        </div>
-        <button className="user-profile-button">Profile</button>
-      </Link>
+
 
       <button onClick={redirectToNotifications}>Notifications</button>
 

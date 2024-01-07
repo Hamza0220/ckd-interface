@@ -27,7 +27,7 @@
         overflow-y: auto;
         min-width: auto; /* Ensure at least full width of the screen */
         min-height: auto; /* Ensure at least full height of the screen*/
-overflow-x: calc(100%);
+overflow-x: auto;
     }
     overflow: auto;
     overflow-x: scroll;
@@ -41,8 +41,8 @@ overflow-x: calc(100%);
         overflow: auto;
         overflow-x: scroll;
         overflow-y: auto;
-        min-width: auto; /* Ensure at least full width of the screen */
-        min-height: auto; /* Ensure at least full height of the screen*/
+        min-width: 100%; /* Ensure at least full width of the screen */
+        min-height: 100%; /* Ensure at least full height of the screen*/
 overflow-x: calc(100%);
     }
     overflow: auto;
