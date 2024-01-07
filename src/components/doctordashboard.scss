@@ -29,7 +29,7 @@
       top: 55px;
       left: 0px;
       z-index: -1;
-
+      overflow-y: auto; // Allows vertical scrolling
 
       .DoctorDashboard .confirmation-buttons {
         display: flex;
