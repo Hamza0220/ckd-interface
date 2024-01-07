@@ -1,58 +1,44 @@
-import React, { useContext, useEffect, useState } from "react";
-import {
-  collection,
-  getDocs,
-  updateDoc,
-  doc,
-  query,
-  where,
-} from "firebase/firestore";
-import { auth, db } from "./firebaseconfig";
-import { Dropdown } from "react-bootstrap";
-import { toast } from "react-toastify";
-import { UserContext } from "./main-layout/UserContext";
+import React, { useContext, useEffect, useState } from 'react';
+import { ref, onValue, getDatabase } from 'firebase/database';
+import { collection, getDocs, query, where, doc, updateDoc } from 'firebase/firestore';
+import { Dropdown } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import { UserContext } from './main-layout/UserContext';
+import { db } from './firebaseconfig'; // Assuming db is your Firestore instance
 
 function Hardware() {
   const { user } = useContext(UserContext);
-  const currentUser =user.uid;
-  // const currentUser = auth.currentUser;
-  const currentDoctorId = currentUser?.uid;
   const [hardwareList, setHardwareList] = useState([]);
-  console.log("hardwareList", hardwareList);
   const [patientList, setPatientList] = useState([]);
   const [selectedHardware, setSelectedHardware] = useState(null);
   const [isRefresh, setIsRefresh] = useState(false);
 
   useEffect(() => {
-   if (user.uid){
-    const fetchPatientsAndHardware = async () => {
-      // Fetch patients
-      const q = query(
-        collection(db, "patient-data"),
-        where("doctorId", "==", currentUser)
-      );
-      const querySnapshot = await getDocs(q);
-      const Arr = [];
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        Arr.push({ id: doc.id, ...data });
+    if (user.uid) {
+      const realTimeDB = getDatabase();
+
+      // Fetch hardware from Realtime Database
+      const hardwareRef = ref(realTimeDB, 'hardwares');
+      onValue(hardwareRef, (snapshot) => {
+        const data = snapshot.val();
+        const hardwareArray = data ? Object.keys(data).map((key) => ({
+          id: key,
+          ...data[key],
+        })) : [];
+        setHardwareList(hardwareArray);
       });
 
-      console.log("patientData", Arr);
-      setPatientList(Arr);
+      // Fetch patients from Firestore
+      const fetchPatients = async () => {
+        const q = query(collection(db, "patient-data"), where("doctorId", "==", user.uid));
+        const querySnapshot = await getDocs(q);
+        const patientsArray = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setPatientList(patientsArray);
+      };
 
-      // Fetch hardware
-      const hardwareSnapshot = await getDocs(collection(db, "hardwares"));
-      const hardwareData = hardwareSnapshot.docs.map((doc) => ({
-        _id: doc.id,
-        ...doc.data(),
-      }));
-      setHardwareList(hardwareData);
-    };
-
-    fetchPatientsAndHardware();
-  }
-  }, [isRefresh ,user.uid]);
+      fetchPatients();
+    }
+  }, [isRefresh, user.uid]);
 
   const handleChangeHardware = (value) => {
     let find = hardwareList.find((el) => el.name === value);
@@ -111,23 +97,23 @@ function Hardware() {
   return (
     <div>
       <h2>Patient List</h2>
-      <div className="mt-3">
-        <div className="border">
+      <div classNameName="mt-3">
+        <div classNameName="border">
           <div>
-            <ul class="responsive-table">
-              <li class="table-header">
-                <div class="col col-2 hdr">Patient Name</div>
-                <div class="col col-3 hdr">Select Hardware</div>
-                {/* <div class="col col-4 hdr">Status</div> */}
-                <div class="col col-4 hdr">Action</div>
+            <ul className="responsive-table">
+              <li className="table-header">
+                <div className="col col-2 hdr">Patient Name</div>
+                <div className="col col-3 hdr">Select Hardware</div>
+                {/* <div className="col col-4 hdr">Status</div> */}
+                <div className="col col-4 hdr">Action</div>
               </li>
               {patientList?.map((item, i) => (
                 <>
-                  <li class="table-row" key={i}>
-                    <div class="col col-2" data-label="Customer Name">
+                  <li className="table-row" key={i}>
+                    <div className="col col-2" data-label="Customer Name">
                       {`${item?.firstName} ${item?.lastName}`}
                     </div>
-                    <div class="col col-3" data-label="Amount">
+                    <div className="col col-3" data-label="Amount">
                       {item?.assignedHardware ? (
                         item?.assignedHardware
                       ) : (
@@ -144,13 +130,13 @@ function Hardware() {
                       )}
                     </div>
                     {/* <div
-                      class="col col-4"
+                      className="col col-4"
                       data-label="Payment Status text-capital"
                     >
                       {item?.status ? item?.status : "Pending"}
                     </div> */}
                     <div
-                      class="col col-4"
+                      className="col col-4"
                       data-label="Payment Status text-capital"
                     >
                       <Dropdown>

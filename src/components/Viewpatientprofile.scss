@@ -89,3 +89,17 @@ h2 {
   text-align: left!important;
   color: #159215;
 }
+.view-patient-container {
+  display: flex;
+  background: #cacec77d;
+
+  .patient-list-column {
+    width: 25%; // Adjust as needed
+    // Additional styles for patient list...
+  }
+
+  .patient-details-column {
+    width: 75%; // Adjust as needed
+    // Additional styles for details...
+  }
+}

@@ -134,7 +134,7 @@ export default function Doctor() {
   return (
     <>
       <div className="interface-content" id="doctor-content">
-        <h3>
+        <h3 className="cardd">
           <>Doctor Login</>
         </h3>
 

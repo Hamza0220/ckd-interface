@@ -343,7 +343,7 @@ function Notifications() {
               <div className="mt-3">
                 <div className="border">
                   <h1 className="py-4 fs-2 fw-bold">
-                    Assosiated Doctor and Patient
+                    Associated Doctor and Patient
                   </h1>
                   <div>
                     <ul class="responsive-table">

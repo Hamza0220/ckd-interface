@@ -112,142 +112,33 @@ export default function Viewpatientprofile() {
   console.log("patients", patients);
   return (
     // <div className="container-fluid pt-0" style={{ background: "none" }}>
-      <div
-        className="view-patient-list row py-5"
-        style={{ background: "#cacec77d" }}
-      >
-        {/* <div className="col-lg-3 col-md-6 col-12 mb-5">
-          <div className="  h-100">
-            <h2 className="fs-7">Patients List</h2>
-            <ul className="list-unstyled">
-              {patients.map((patient, indx) => (
-                <li
-                  key={patient.id}
-                  className={`patient-btn ${
-                    activeIndx === indx ? "patient-active" : ""
-                  }`}
-                  onClick={() => handlePatientClick(patient, indx)}
-                >
-                  {patient.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      
-        <div className="col-lg-3 col-md-6 col-12 mb-5">
-          <div className=" h-100">
-            <h3 className="fs-7">Patient Profile</h3>
-            {selectedPatient ? (
-              <div>
-                <h4 className="fs-7">{selectedPatient.name}</h4>
-                <img
-                  src={selectedPatient.profile_pic}
-                  className="profile-picture"
-                  alt=""
-                />
-                <p className="text-start">
-                  Age: <span className="fw-normal">{selectedPatient.age}</span>
-                </p>
-                <p className="text-start">
-                  Email:{" "}
-                  <span className="fw-normal">{selectedPatient.email}</span>
-                </p>
-                <p className="text-start">
-                  Gender:{" "}
-                  <span className="fw-normal">{selectedPatient.gender}</span>
-                </p>
-                <p className="text-start">
-                  PhoneNumber:{" "}
-                  <span className="fw-normal">
-                    {selectedPatient.phoneNumber}
-                  </span>
-                </p>
-                <p className="text-start">
-                  Address: <span>{selectedPatient.address}</span>
-                </p>
-              </div>
-            ) : (
-              <p>Select a patient from the list to view their profile.</p>
-            )}
-          </div>
-        </div>
     
-        <div className="col-lg-3 col-md-6 col-12 mb-5">
-          <div className=" h-100">
-            <h3 className="fs-7">Medical History</h3>
-            <ul className="list-unstyled">
-              {medicalHistory.map((report, index) => (
-                <li key={(index = 1)} style={{ marginBottom: "20px" }}>
-                  {report.name.toLowerCase().endsWith(".jpg") ||
-                  report.name.toLowerCase().endsWith(".pdf") ||
-                  report.name.toLowerCase().endsWith("jpeg") ||
-                  report.name.toLowerCase().endsWith(".jfif") ||
-                  report.name.toLowerCase().endsWith(".docx") ||
-                  report.name.toLowerCase().endsWith(".png") ? (
-                    <img
-                      src={report.downloadURL}
-                      alt={report.name}
-                      className="img-fluid"
-                      style={{ cursor: "pointer" }}
-                      onClick={() => openFullFile(report.downloadURL)}
-                    />
-                  ) : (
-                    <a
-                      href={report.downloadURL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {report.name}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-       
-        <div className="col-lg-3 col-md-6 col-12 mb-5">
-          <div className=" h-100">
-            <h3 className="fs-7">Lab Reports</h3>
-            <ul>
-              {labReports.map((report, index) => (
-                <li key={index} style={{ marginBottom: "20px" }}>
-                  {report.name.toLowerCase().endsWith(".jpg") ||
-                  report.name.toLowerCase().endsWith(".pdf") ||
-                  report.name.toLowerCase().endsWith("jpeg") ||
-                  report.name.toLowerCase().endsWith(".jfif") ||
-                  report.name.toLowerCase().endsWith(".png") ? (
-                    <img
-                      src={report.downloadURL}
-                      alt={report.name}
-                      className="img-fluid"
-                      style={{ listStyle: "none", cursor: "pointer" }}
-                      onClick={() => openFullFile(report.downloadURL)}
-                    />
-                  ) : (
-                    <a
-                      href={report.downloadURL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {report.name}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div> */}
-      {/* </div> */}
+    <div className="view-patient-container py-5" style={{ background: "#cacec77d" }}>
+      <div className="patient-list-column">
+        <h2 className="fs-7">Patients List</h2>
+        <ul className="list-unstyled">
+          {patients.map((patient, indx) => (
+            <li
+              key={patient.id}
+              className={`patient-btn ${
+                activeIndx === indx ? "patient-active" : ""
+              }`}
+              onClick={() => handlePatientClick(patient, indx)}
+            >
+              {patient.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="patient-details-column">
       <Tabs
             id="controlled-tab-example"
             activeKey={key}
             onSelect={(k) => setKey(k)}
             className="mb-3"
         >
-            <Tab eventKey="patientList" title="Patient List">
-                {/* Patient List Content Here */}
+           {/* <Tab eventKey="patientList" title="Patient List">
+                Patient List Content Here
                 <div className="col-lg-3 col-md-6 col-12 mb-5">
           <div className="  h-100">
             <h2 className="fs-7">Patients List</h2>
@@ -266,7 +157,7 @@ export default function Viewpatientprofile() {
             </ul>
           </div>
         </div>
-            </Tab>
+            </Tab>  */}
             <Tab eventKey="profile" title="Profile">
                 {/* Patient Profile Content Here */}
                    {/* // patient profile  */}
@@ -381,7 +272,11 @@ export default function Viewpatientprofile() {
           </div>
         </div>
             </Tab>
+            <Tab eventKey="Hardware Statistics" title="Hardware Statistics">
+              </Tab>
             </Tabs>
+
+            </div>
     </div>
   );
 }

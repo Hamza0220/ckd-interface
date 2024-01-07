@@ -1,86 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { db } from './firebaseconfig';
-import { collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { database } from './firebaseconfig';
+import { ref, onValue } from 'firebase/database';
 import './ecgdata.scss';
 
 // Register Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function EcgData() {
-  const [ecgData, setEcgData] = useState([]);
-  console.log('ecgData',ecgData)
   const [visibleData, setVisibleData] = useState([]);
-  // const maxDisplayPoints = 50;
-  // const updateInterval = 4000; // 4 seconds
-  const [currentDataIndex, setCurrentDataIndex] = useState(0);
-  const maxDisplayPoints = 1000; // Increased number of points displayed
-  const updateInterval = 100; // Slower update interval, 10 seconds
-  const getNextDataPoint = () => {
-    if (currentDataIndex < ecgData.length) {
-      const nextDataPoint = ecgData[currentDataIndex];
-      setCurrentDataIndex(currentDataIndex + 1);
-      return nextDataPoint;
-    } else {
-      // Reset the index to loop the data or handle it as needed
-      setCurrentDataIndex(0);
-      return ecgData[0]; // Loop back to the first data point
-    }
-  };
+  const maxDisplayPoints = 100;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const q = query(collection(db, 'ecg_values2'), orderBy('timestamp', 'desc'), limit(1));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          setEcgData(doc.data().values);
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    };
+    const sensorValueRef = ref(database, 'sensorValue');
 
-    fetchData();
-  }, []);
+    const unsubscribe = onValue(sensorValueRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log("Raw data from Firebase:", data);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Add a new data point
-      const nextDataPoint = getNextDataPoint();
-      if (nextDataPoint !== undefined) {
-        setVisibleData((currentVisibleData) => {
-          const newData = [...currentVisibleData, nextDataPoint];
-          // Keep only the latest 'maxDisplayPoints' data points
+      if (data !== null && data !== undefined) {
+        setVisibleData(currentData => {
+          const newData = [...currentData, data];
           return newData.slice(-maxDisplayPoints);
         });
       }
-    }, 10); // Add new point every 3 seconds
-  
-    return () => clearInterval(interval);
-  }, [currentDataIndex, ecgData]);
-  
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const chartData = {
-    labels: Array.from({ length: maxDisplayPoints }, (_, i) => i + 1),
+    labels: Array.from({ length: visibleData.length }, (_, i) => i + 1),
     datasets: [
       {
-        label: 'ECG Data',
+        label: 'Sensor Data',
         data: visibleData,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
+        tension: 0.4, // Increased tension for smoother interpolation
       },
     ],
   };
+  
+
   const options = {
     scales: {
       x: {
@@ -95,7 +58,7 @@ function EcgData() {
         type: 'linear',
         beginAtZero: false,
         suggestedMin: -0.5, // Adjust this value based on your expected minimum data value
-        suggestedMax: 1,  // Adjust this value based on your expected maximum data value
+        suggestedMax: 3000,  // Adjust this value based on your expected maximum data value
         grid: {
           drawOnChartArea: true,
           color: 'rgba(0, 0, 0, 0.1)',
@@ -128,15 +91,11 @@ function EcgData() {
   };
   
   return (
-   
-    <div 
-    style={{ height: '75vh', width: '100vw', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-       
+    <div style={{ height: '75vh', width: '100vw', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div style={{ height: '50vh', width: '95vw', border: '1px solid black', overflowX: 'auto' }}>
         <div className='canvas' style={{ minWidth: '1860px' }}>
           <Line data={chartData} options={options} />
         </div>
-     
       </div>
       <style>
         {`
