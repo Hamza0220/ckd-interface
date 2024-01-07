@@ -58,7 +58,7 @@ function EcgData() {
         type: 'linear',
         beginAtZero: false,
         suggestedMin: -0.5, // Adjust this value based on your expected minimum data value
-        suggestedMax: 3000,  // Adjust this value based on your expected maximum data value
+        suggestedMax: 500,  // Adjust this value based on your expected maximum data value
         grid: {
           drawOnChartArea: true,
           color: 'rgba(0, 0, 0, 0.1)',
