@@ -127,6 +127,7 @@ function DoctorDashboard() {
   // };
   return (
     <div className="DoctorDashboard">
+      <div className="doctorcontainer">
       <div id="profileNameBox" className="profile-name-box">
         <BiSolidUser className="fs-1" />
         <br />
@@ -202,6 +203,9 @@ function DoctorDashboard() {
     </div>
   </div>
 </Modal>
+      </div>
+      
+
 
       {/* <button className="btn" onClick={handleemergency}>
         Emergency Room

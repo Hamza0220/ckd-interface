@@ -25,12 +25,7 @@ export default function Patient() {
   const { login } = useContext(UserContext);
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/;
-  const [ setEmailValid] = useState(true);
-  // const [showSignup] = useState(false);
-  // const [showPatientLogin, setShowPatientLogin] = useState(true);
-  // const [showDoctorLogin, setShowDoctorLogin] = useState(true);
-  // const [showAdminLogin, setShowAdminLogin] = useState(true);
-  // const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  // const [emailValid, setEmailValid] = useState(true);
   const navigate = useNavigate();
   const [showWrongPasswordAlert, setShowWrongPasswordAlert] = useState(false); // Declare the state here
 
@@ -91,14 +86,10 @@ export default function Patient() {
 
   const handleEmailValidation = (event) => {
     const emailInput = event.target;
-    setEmailValid(emailInput.value === "" || emailRegex.test(emailInput.value));
+    (emailInput.value === "" || emailRegex.test(emailInput.value));
   };
 
   const handleSignupClick = () => {
-    // setShowPatientLogin(false);
-    // setShowDoctorLogin(false);
-    // setShowAdminLogin(false);
-    // setIsAdminLoggedIn(false);
     navigate("Patientsignup");
   };
   const handlepatientForgotPassword = () => {

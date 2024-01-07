@@ -15,6 +15,7 @@
   transform: translate(-50%, -50%); // Adjust for the size of the modal
   // other styles...
 }
+
 .DoctorDashboard{
        /* CSS styles go here */
 
@@ -22,7 +23,7 @@
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-position: center;
-      background-attachment: fixed;
+      background-attachment: scroll;
       width: 100vw;
       height: 96vh;
       position: fixed;
@@ -33,13 +34,23 @@
       overflow-x: auto;
       @media (max-width: 320px) {
         .DoctorDashboard {
-          overflow: auto;
-          transform: none;
-          width: 100%; /* Allows interface to fit the screen width */
-          min-width: 100%; /* Reset min-width for small screens */
-          min-height: 100%;
+          position: relative;
+            width: 100%; /* Fit to screen width */
+            height: auto; /* Adjust height based on content */
+            min-height: 100%; /* Ensure it covers the full viewport height */
+            background-attachment: scroll; /* Make background scrollable */
         }
-      }
+    }
+    @media (max-width: 320px) {
+    .doctorcontainer {
+      overflow-x: auto; /* Enable horizontal scrolling */
+      overflow-y: auto; /* Enable vertical scrolling */
+      width: 100%; /* Adjust width as needed */
+      height: auto; /* Adjust height based on content */
+      min-height: 100vh; /* Minimum height to cover the viewport */
+      /* Add any additional styling as needed */
+  }
+}
       .DoctorDashboard .confirmation-buttons {
         display: flex;
         justify-content: center;
@@ -273,7 +284,7 @@ button {
   #d-card{
     width: 23%;
     height: 37px;
-    padding: 4px;
+    padding: 0px;
     background-color: #88b9c3;
   }
   .d-profile {
